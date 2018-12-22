@@ -5,8 +5,8 @@
 module.exports = {
 
     'facebookAuth' : {
-        'clientID'      : '', // your App ID
-        'clientSecret'  : '', // your App Secret
+        'clientID'      : 'something', // your App ID
+        'clientSecret'  : 'anything', // your App Secret
         'callbackURL'   : 'https://frozen-oasis-11437.herokuapp.com/auth/facebook/callback',
         'profileFields'     : ['emails', 'first_name', 'last_name'] // For requesting permissions from Facebook API
     },
