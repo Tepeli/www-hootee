@@ -1,0 +1,25 @@
+
+h1 {
+  color: #ffe082;
+  text-shadow: 0 0 10px #2196f3;
+  transform: rotate(-2deg);
+}
+
+body {
+  background-image: linear-gradient(to bottom, #ffc107, #2196f3);
+  background-repeat: no-repeat;
+}
+
+/* label color */
+   .input-field label {
+     color: black !important;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: gold !important;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid gold !important;
+     box-shadow: 0 1px 0 0 gold !important;
+   }

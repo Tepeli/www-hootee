@@ -1,0 +1,35 @@
+extends layout
+
+block content
+
+  doctype html
+  meta(charset='UTF-8')
+  head
+    title Vue
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css')
+    link(rel='stylesheet' href='/stylesheets/style.css')
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
+  .container
+    h1.center.col.m12.s12 Huikean hieno Ostoslista&auml;ppi
+    #app
+      p.center.col.m6.s6(v-if='errors.length')
+        b.flow-text T&ouml;rm&auml;simme seuraavanlaisiin virheisiin:
+        ul.collection
+          li.collection-item.center.col.m6.s6.amber.flow-text(v-for='error in errors') {{ error }}
+      .row
+        .input-field.col.m10.s10
+          input#ostos(type='text' placeholder='Kirjoita tähän ostos' v-model='message.ostos')
+          label.active(for='ostos') Ostos
+        .col.m2.s2.right-align
+          a.btn.btn-large.waves-effect.waves-light.blue(v-on:click='lisays')
+            i.material-icons add_shopping_cart
+      ul.collection.with-header
+        li.collection-header.amber.flow-text Ostokset:
+        lista(v-for='(message, index) in messages' v-bind:key='message.id' v-bind:teksti='message.teksti' v-on:poisto='poisto(index)')
+  br
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js')
+  script(src='https://unpkg.com/vue')
+  script(src='https://unpkg.com/axios/dist/axios.min.js')
+  script(src='/javascripts/scripts.js')
+  footer.page-footer.blue.flow-text
+    .container Tehnyt Jesse Tervo

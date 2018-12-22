@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  meta(charset='UTF-8')
+  head
+    title Charts
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css')
+    link(rel='stylesheet' href='/stylesheets/styles.css')
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
+  body
+    h1 Here are some #{title}
+    a.btn.btn-default.btn-sm(href='/list') To the app!
+    
+    canvas#myChart(width='400' height='200')
+    
+  
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js")
+  script(src='https://unpkg.com/vue')
+  script(src='https://unpkg.com/axios/dist/axios.min.js')
+  script(src='/javascripts/chartscripts.js')
+  footer.page-footer.blue.flow-text
+    .container Site by Jesse Tervo

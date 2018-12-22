@@ -1,0 +1,62 @@
+extends layout
+
+block content
+  meta(charset='UTF-8')
+  head
+    title Vue
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css')
+    link(rel='stylesheet' href='/stylesheets/styles.css')
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
+  .container
+    .row
+      h1.center.col.m10.s10 Artsy ballgame
+      if (user.local.email)
+          p.col.m2.s2 Logged in as #{user.local.email}
+      else
+        p.col.m2.s2 Logged in as #{user.facebook.name}
+        
+      a.blue.col.m2.s2.btn.btn-default.btn-sm(href='/logout') Logout
+  .container
+    .row
+      p.center.col.m12.s12 Move the black ball with arrow keys and complete the painting!
+      p.center.col.m12.s12 Your ball grows when it eats smaller balls and shrinks if it hits the barrel.
+      p.center.col.m12.s12 Red circles are there to guide you.
+      p.center.col.m12.s12 Restart by refreshing the page.
+      p.center.col.m12.s12 HINT: The big eye size is 2.0.
+      h6.center.col.m12.s12 CLICK THE GAME TO GO FULL SCREEN! ONLY PLAY FULL SCREEN! 
+  
+  .container
+    #my-game
+    #app
+      p.center.col.m6.s6(v-if='errors.length')
+        b.flow-text Errors:
+        ul.collection
+          li.collection-item.center.col.m6.s6.amber.flow-text(v-for='error in errors') {{ error }}
+      .row
+        .input-field.col.m10.s10
+          input#written(type='text' placeholder='Write a message!' v-model='written' v-on:keyup.enter="adding")
+          label.active(for='written') Message
+        .col.m2.s2.right-align
+          a.btn.btn-large.waves-effect.waves-light.blue(v-on:click='adding')
+            i.material-icons add_shopping_cart
+      .row
+        ul.collection.with-header.col.m8.s8
+          li.collection-header.amber.flow-text Chat:
+          lista(v-for='(message, index) in messages' v-bind:key='message._id' v-bind:teksti='message.teksti' v-bind:user='message.user' v-on:deletion='deletion(index)')
+        ul.collection.with-header.col.m4.s4
+          li.collection-header.amber.flow-text Scoreboard:
+          scoreboard(v-for='score in scores' v-bind:key='score._id' v-bind:value='score.points' v-bind:person='score.user')
+      .row
+        a.btn.btn-large.waves-effect.waves-light.orange(href='/charts') Charts
+  br
+      
+    
+  
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js')
+  script(src='https://unpkg.com/vue')
+  script(src='https://unpkg.com/axios/dist/axios.min.js')
+  script(src='/javascripts/scripts.js')
+  script(type="text/javascript" src="/javascripts/phaser.js")
+  script(type="text/javascript" src='/javascripts/game.js')
+  footer.page-footer.blue.flow-text
+    .container Site by Jesse Tervo
