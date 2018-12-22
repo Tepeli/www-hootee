@@ -4,7 +4,6 @@ services:
     container_name: app
     restart: always
     build: .
-    command: npm test
     ports:
       - "8080:3000"
     links:
